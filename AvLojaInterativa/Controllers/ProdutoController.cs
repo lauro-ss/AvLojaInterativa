@@ -82,7 +82,8 @@ namespace AvLojaInterativa.Controllers
         // GET: ProdutoController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            return View(await _produto.Get(id));
+            await _produto.Delete(id);
+            return RedirectToAction(nameof(HomeController.Index));
         }
 
         // POST: ProdutoController/Delete/5
