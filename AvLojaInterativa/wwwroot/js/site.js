@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function getCategorias(url, id) {
+    let idCategoria = document.getElementById("fabricante");
+    $.ajax({
+        type: "GET",
+        url: url,
+        dataType: "HTML",
+        data: { id: idCategoria.value },
 
-// Write your JavaScript code.
+        success: function (result) {
+            $("#ajaxBox").html(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //TODO::
+        },
+    });
+}

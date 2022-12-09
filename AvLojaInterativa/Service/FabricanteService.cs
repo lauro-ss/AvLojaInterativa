@@ -1,4 +1,5 @@
 ﻿using AvLojaInterativa.Data;
+using AvLojaInterativa.Data.DTO;
 using AvLojaInterativa.Data.Interfaces;
 using AvLojaInterativa.Models;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,20 @@ namespace AvLojaInterativa.Service
         public async Task<IEnumerable<FabricanteModel>> GetAll()
         {
             return await _dbContext.Fabricante.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<CategoriaDTO> GetCategoriasById(int id)
+        {
+            var query = from fabricante in _dbContext.Fabricante
+                        where fabricante.Id.Equals(id)
+                        orderby fabricante.Nome
+                        select new CategoriaDTO
+                        {
+                            Categoria_1 = fabricante.Categoria_1,
+                            Categoria_2 = fabricante.Categoria_2,
+                            Categoria_3 = fabricante.Categoria_3
+                        };
+            return query.AsNoTracking().First();
         }
     }
 }

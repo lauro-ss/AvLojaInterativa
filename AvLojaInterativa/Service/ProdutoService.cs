@@ -1,4 +1,5 @@
 ﻿using AvLojaInterativa.Data;
+using AvLojaInterativa.Data.DTO;
 using AvLojaInterativa.Data.Interfaces;
 using AvLojaInterativa.Models;
 using Microsoft.EntityFrameworkCore;
@@ -47,9 +48,21 @@ namespace AvLojaInterativa.Service
             return produto;
         }
 
-        public async Task<IEnumerable<ProdutoModel>> GetAll()
+        public async Task<IEnumerable<ProdutoDTO>> GetAll()
         {
-            return await _dbContext.Produto.AsNoTracking().ToListAsync();
+            var query = from produto in _dbContext.Produto
+                        orderby produto.Nome
+                        select new ProdutoDTO
+                        {
+                            Id = produto.Id,
+                            Nome = produto.Nome,
+                            Categoria = produto.Categoria,
+                            Preco = produto.Preco,
+                            NomeFabricante = produto.IdFabricanteNavigation.Nome,
+                        };
+            return query.AsNoTracking();
+
+            //return await _dbContext.Produto.AsNoTracking().ToListAsync();
         }
     }
 }
