@@ -1,10 +1,9 @@
 ﻿@model AvLojaInterativa.Models.ProdutoModel
 
-<h4 class="text-uppercase">Produtos</h4>
-
-<div class="row">
+<h4 class="text-uppercase" >Produtos</h4>
+<div>
     <div>
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label text-uppercase"></label>
@@ -13,19 +12,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdFabricante" class="control-label text-uppercase"></label>
-                <select class="form-control" name="IdFabricante" id="fabricante" onclick="getCategorias('@Url.Action("GetCategorias")')"  placeholder="Selecione o fabricante">
+                <select class="form-control" name="IdFabricante" onclick="getCategorias('@Url.Action("GetCategorias")')"  id="fabricante" placeholder="Selecione o fabricante">
                     @if (ViewBag.listaFabricantes != null)
-                    @foreach (var item in ViewBag.listaFabricantes)
-                    {
-                        <option value="@item.Id">@item.Nome</option>
-                    }
+                        @foreach (var item in ViewBag.listaFabricantes)
+                        {
+                            <option value="@item.Id">@item.Nome</option>
+                        }
                 </select>
                 <span asp-validation-for="IdFabricante" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Categoria" class="control-label text-uppercase"></label>
-                <select class="form-control"  name="Categoria" id="ajaxBox" placeholder="Selecione a categoria">
-                    
+                <select class="form-control" name="Categoria" id="ajaxBox" placeholder="Selecione a categoria">
                 </select>
                 <span asp-validation-for="Categoria" class="text-danger"></span>
             </div>
@@ -35,11 +33,15 @@
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
+<!-- <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div> -->
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

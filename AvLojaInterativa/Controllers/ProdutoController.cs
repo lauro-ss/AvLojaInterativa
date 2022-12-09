@@ -29,7 +29,7 @@ namespace AvLojaInterativa.Controllers
             //produto.ListaFabricantes = new SelectList(listaFabricantes, "IdFabricante", "Nome", null);
             ViewBag.listaFabricantes = listaFabricantes;
 
-            return View(produto);
+            return PartialView(produto);
         }
 
         // POST: ProdutoController/Create
@@ -43,7 +43,7 @@ namespace AvLojaInterativa.Controllers
             }
             catch
             {
-                return View(produto);
+                return PartialView(produto);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -51,7 +51,10 @@ namespace AvLojaInterativa.Controllers
         // GET: ProdutoController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            return View(await _produto.Get(id));
+            ProdutoModel produto = await _produto.Get(id);
+            IEnumerable<FabricanteModel> listaFabricantes = await _fabricante.GetAll();
+            ViewBag.listaFabricantes = listaFabricantes;
+            return View(produto);
         }
 
         // POST: ProdutoController/Edit/5

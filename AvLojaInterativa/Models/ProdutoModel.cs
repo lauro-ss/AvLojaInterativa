@@ -7,11 +7,11 @@ namespace AvLojaInterativa.Models
     public class ProdutoModel
     {
         public int Id { set; get; }
-
+        [Display(Name = "Nome do Produto")]
         public string Nome { get; set; }
-
+        [Display(Name = "Fabricante")]
         public int IdFabricante { get; set; }
-
+        [Display(Name = "Categoria")]
         public string Categoria { get; set; }
 
         [Display(Name = "Preço")]

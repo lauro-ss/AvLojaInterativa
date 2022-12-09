@@ -27,7 +27,7 @@ namespace AvLojaInterativa.Controllers
         // GET: FabricanteController/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: FabricanteController/Create
@@ -35,18 +35,15 @@ namespace AvLojaInterativa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(FabricanteModel fabricante)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    await _fabricante.Create(fabricante);
-                }
-                catch
-                {
-                    return View();
-                }
+                await _fabricante.Create(fabricante);
             }
-            return RedirectToAction(nameof(HomeController.Index));
+            catch
+            {
+                return PartialView(fabricante);
+            }
+            return RedirectToAction("Index", "Produto");
         }
 
         // GET: FabricanteController/Edit/5
