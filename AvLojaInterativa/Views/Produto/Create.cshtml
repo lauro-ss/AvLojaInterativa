@@ -13,7 +13,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdFabricante" class="control-label text-uppercase"></label>
-                <select class="form-control" name="IdFabricante" id="fabricante" onclick="getCategorias('@Url.Action("GetCategorias")')"  placeholder="Selecione o fabricante">
+                <select class="form-select" name="IdFabricante" id="fabricante" onclick="getCategorias('@Url.Action("GetCategorias")')">
+                    <option value ="">Selecione o fabricante</option>
                     @if (ViewBag.listaFabricantes != null)
                     @foreach (var item in ViewBag.listaFabricantes)
                     {
@@ -24,8 +25,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Categoria" class="control-label text-uppercase"></label>
-                <select class="form-control"  name="Categoria" id="ajaxBox" placeholder="Selecione a categoria">
-                    
+                <select class="form-select" name="Categoria" id="ajaxBox">
+                    <option value="">Selecione a categoria</option>
                 </select>
                 <span asp-validation-for="Categoria" class="text-danger"></span>
             </div>
