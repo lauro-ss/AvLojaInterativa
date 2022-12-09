@@ -1,3 +1,8 @@
+using AvLojaInterativa.Data;
+using AvLojaInterativa.Data.Interfaces;
+using AvLojaInterativa.Service;
+using Microsoft.EntityFrameworkCore;
+
 namespace AvLojaInterativa
 {
     public class Program
@@ -8,6 +13,13 @@ namespace AvLojaInterativa
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<LojaContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("LojaDatabase"))
+                );
+
+            builder.Services.AddTransient<IFabricante, FabricanteService>();
+            builder.Services.AddTransient<IProduto, ProdutoService>();
 
             var app = builder.Build();
 
