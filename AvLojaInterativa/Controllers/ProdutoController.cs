@@ -29,7 +29,7 @@ namespace AvLojaInterativa.Controllers
             //produto.ListaFabricantes = new SelectList(listaFabricantes, "IdFabricante", "Nome", null);
             ViewBag.listaFabricantes = listaFabricantes;
 
-            return PartialView(produto);
+            return View(produto);
         }
 
         // POST: ProdutoController/Create
