@@ -4,22 +4,18 @@
     ViewData["Title"] = "Avaliação Loja Interativa";
 }
 
-<div class="d-flex justify-content-evenly flex-wrap" style="row-gap: 20px">
-    <div>
-        <button class="btn btn-primary" onclick="getProduto('@Url.Action("Create")')">Cadastrar Produto</button>
+<div class="d-flex justify-content-between flex-wrap" style="row-gap: 20px; column-gap: 60px;">
+    <div class="flex-fill bd-highlight">
         <div id="produto">
         </div>
     </div>
 
-    <div>
-        <button class="btn btn-primary" onclick="getFabricante('@Url.Action("Create", "Fabricante")')">Cadastrar Fabricante</button>
+    <div class="flex-fill bd-highlight">
         <div id="fabricante">
         </div>
     </div>
 </div>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -89,3 +85,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.onload = function () {
+        getProduto('@Url.Action("Create")');
+        getFabricante('@Url.Action("Create", "Fabricante")');
+    }
+</script>
